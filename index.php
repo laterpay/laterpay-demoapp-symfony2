@@ -1,0 +1,8 @@
+<?php
+
+echo "
+
+bad
+
+". "Coding ";
+
