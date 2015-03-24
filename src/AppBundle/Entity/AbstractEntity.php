@@ -4,8 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Gedmo\Timestampable\Traits\TimestampableEntity;
-
 /**
  * @ORM\MappedSuperclass
  */
