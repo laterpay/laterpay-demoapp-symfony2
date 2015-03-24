@@ -55,6 +55,14 @@ class TimePass extends AbstractEntity
         // nothing
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 
     /**
      * Set name

@@ -68,6 +68,13 @@ class Post extends AbstractEntity
         $this->published_at = new \DateTime();
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
 
     /**
      * Set title
