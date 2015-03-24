@@ -33,6 +33,14 @@ class Setting extends AbstractEntity
         // nothing
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getKey();
+    }
+
 
     /**
      * Set key

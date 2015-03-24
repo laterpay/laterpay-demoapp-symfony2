@@ -24,7 +24,7 @@ class Category extends AbstractEntity
      * @ORM\OneToMany(targetEntity="TimePass", mappedBy="category", cascade={"all"})
      */
     protected $timepasses;
-    
+
 
     /**
      * Constructor
@@ -33,6 +33,14 @@ class Category extends AbstractEntity
     {
         $this->post         = new \Doctrine\Common\Collections\ArrayCollection();
         $this->timepasses   = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 
 
