@@ -1,0 +1,13 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+    <div>
+        {{ post.publishedAt | date('Y-m-d H:i:s') }} by "{{ post.user.username }}", Category: {{ post.category.name }} <br />
+        Title: {{ post.title }}<br />
+        {{ post.content | nl2br }}<br />
+
+        <br />
+        {% set params = app.request.get('category_id') ? { 'category_id' : app.request.get('category_id')} : {} %}
+        <a href="{{ path('app_posts', params) }}">Back to List</a><br />
+    </div>
+{% endblock %}

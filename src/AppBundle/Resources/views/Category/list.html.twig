@@ -1,0 +1,10 @@
+{% if categories | length %}
+    <div style="margin: 10px;">
+        Categories:
+        {% for category in categories %}
+            <a href="{{ path('app_posts', { 'category_id' : category.id }) }}">{{ category.name }} ({{ category.publishedPosts.count }})<a>
+            {% if not loop.last %}&nbsp;|&nbsp;{% endif %}
+        {% endfor %}
+    </div>
+    <hr />
+{% endif %}

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PostRepository")
  * @ORM\Table(name="posts")
  */
 class Post extends AbstractEntity
@@ -50,7 +50,7 @@ class Post extends AbstractEntity
     protected $price;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $published_at;
 
@@ -75,6 +75,26 @@ class Post extends AbstractEntity
     {
         return $this->getTitle();
     }
+
+    /**
+     * @return bool
+     */
+    public function getPublished()
+    {
+        return $this->getPublishedAt() !== null;
+    }
+
+    /**
+     * @param bool $value
+     * @return \AppBundle\Entity\Post
+     */
+    public function setPublished($value)
+    {
+        $this->setPublishedAt($value ? new \DateTime() : null);
+
+        return $this;
+    }
+
 
     /**
      * Set title

@@ -64,9 +64,8 @@ class PostAdmin extends Admin
             ->add('title')
             ->add('content')
             ->add('teaser_content')
-            ->add('status')
             ->add('price')
-            ->add('published_at')
+            ->add('published', 'checkbox', array('required' => false))
             ->add('revenue_model')
         ;
     }
