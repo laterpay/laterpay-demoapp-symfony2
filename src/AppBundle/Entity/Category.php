@@ -43,6 +43,23 @@ class Category extends AbstractEntity
         return $this->getName();
     }
 
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getPublishedPosts()
+    {
+        $items = new \Doctrine\Common\Collections\ArrayCollection();
+
+        foreach ($this->getPosts() as $post) {
+            /* @var $post \AppBundle\Entity\Post */
+            if ($post->getPublished()) {
+                $items->add($post);
+            }
+        }
+
+        return $items;
+    }
+
 
     /**
      * Set name

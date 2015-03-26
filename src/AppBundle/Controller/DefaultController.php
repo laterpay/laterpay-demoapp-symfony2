@@ -5,10 +5,10 @@ namespace AppBundle\Controller;
 class DefaultController extends AbstractController
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        return $this->redirect($this->generateUrl('app_posts'));
     }
 }
