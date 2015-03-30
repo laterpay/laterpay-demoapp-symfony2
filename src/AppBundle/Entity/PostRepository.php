@@ -16,15 +16,17 @@ class PostRepository extends EntityRepository
 {
     /**
      * @param \AppBundle\Entity\Category $category
+     * @param int $limit
      * @return array
      */
-    public function getPublishedPosts(Category $category = null)
+    public function getPublishedPosts(Category $category = null, $limit = 100)
     {
         $query = $this->createQueryBuilder('p');
 
         $query
             ->where('p.published_at IS NOT NULL')
             ->orderBy('p.published_at', 'desc')
+            ->setMaxResults($limit)
         ;
 
         if ($category) {

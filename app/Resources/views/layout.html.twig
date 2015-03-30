@@ -8,6 +8,7 @@
     </head>
     <body>
         <div style="margin: 10px;">
+            <a href="{{ path('app_posts_feed') }}"><img style="margin-bottom: -10px" src="{{ asset('img/rss.png') }}" /></a>
             <a href="{{ path('app_homepage') }}">Home</a>
             |
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
