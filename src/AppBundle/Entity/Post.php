@@ -95,6 +95,22 @@ class Post extends AbstractEntity
         return $this;
     }
 
+    /**
+     * @param int $length
+     * @param string $suffix
+     * @return string
+     */
+    public function getTruncatedContent($length = 100, $suffix = '...')
+    {
+        $content = $this->getContent();
+
+        if (mb_strlen($content) > $length) {
+            $content = mb_substr($content, 0, $length) . $suffix;
+        }
+
+        return $content;
+    }
+
 
     /**
      * Set title

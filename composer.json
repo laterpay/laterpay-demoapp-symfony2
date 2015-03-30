@@ -1,6 +1,6 @@
 {
-    "name": "ykasenka/demo-app",
-    "license": "proprietary",
+    "name": "laterpay/demoapp-symfony2",
+    "license": "MIT",
     "type": "project",
     "autoload": {
         "psr-0": {
@@ -28,7 +28,8 @@
         "stof/doctrine-extensions-bundle": "~1.1",
         "sonata-project/admin-bundle": "~2.3",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
-        "sonata-project/user-bundle": "~2.2"
+        "sonata-project/user-bundle": "~2.2",
+        "eko/feedbundle": "~1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
