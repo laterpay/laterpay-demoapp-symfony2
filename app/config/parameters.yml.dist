@@ -19,4 +19,4 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            f561aaf6ef0bf14d4208bb46a4ccb3ad
 
-    app_host:          http://laterpay-symfon2-demoapp.com
+    app_host:          http://laterpay-symfony2-demoapp.com
