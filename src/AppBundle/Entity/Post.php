@@ -45,7 +45,7 @@ class Post extends AbstractEntity
     protected $status = self::STATUS_NEW;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      */
     protected $price;
 
@@ -96,16 +96,18 @@ class Post extends AbstractEntity
     }
 
     /**
-     * @param int $length
+     * @param int $wordsCount
      * @param string $suffix
      * @return string
      */
-    public function getTruncatedContent($length = 100, $suffix = '...')
+    public function getTruncatedContent($wordsCount = 60, $suffix = '...')
     {
         $content = $this->getContent();
 
-        if (mb_strlen($content) > $length) {
-            $content = mb_substr($content, 0, $length) . $suffix;
+        $words = explode(' ', $content);
+
+        if (sizeof($words) > $wordsCount) {
+            $content = implode(' ', array_slice($words, 0, $wordsCount)) . $suffix;
         }
 
         return $content;
