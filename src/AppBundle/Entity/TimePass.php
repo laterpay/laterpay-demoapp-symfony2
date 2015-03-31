@@ -6,7 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="timepasses")
+ * @ORM\Table(name="timepasses", uniqueConstraints={
+ *      @ORM\UniqueConstraint(name="voucher_code_idx", columns={
+ *          "voucher_code"
+ *      })
+ * })
  */
 class TimePass extends AbstractEntity
 {
