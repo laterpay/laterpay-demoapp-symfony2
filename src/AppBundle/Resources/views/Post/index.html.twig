@@ -7,8 +7,8 @@
         <div style="margin-top: 10px; padding: 5px; border: 1px solid #C0C0C0;">
             {{ post.publishedAt | date('Y-m-d H:i:s') }} by "{{ post.user.username }}", Category: {{ post.category.name }}<br />
             Title: {{ post.title }}<br />
-            {{ post.content | nl2br | slice(0, 100) ~ (post.content|length > 100 ? '...' : '') }}<br />
-            <a href="{{ path('app_post_view', { id: post.id } | merge(params)) }}">View</a><br />
+            {{ post.truncatedContent | nl2br }}<br />
+            <a href="{{ path('app_post_view', { id: post.id } | merge(params)) }}">Read the full post</a><br />
         </div>
     {% endfor %}
 {% endblock %}

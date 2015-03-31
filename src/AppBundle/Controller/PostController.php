@@ -43,7 +43,7 @@ class PostController extends AbstractController
     {
         $em = $this->getEntityManager();
 
-        $posts = $em->getRepository('AppBundle:Post')->getPublishedPosts();
+        $posts = $em->getRepository('AppBundle:Post')->getPublishedPosts(null, 10);
 
         $feed = $this->get('eko_feed.feed.manager')->get('posts');
 
@@ -53,7 +53,7 @@ class PostController extends AbstractController
 
             $item = new PostFeedItem(
                 $post->getTitle(),
-                $post->getTruncatedContent(),
+                $this->renderView('AppBundle:Feed:post.html.twig', array('post' => $post)),
                 $this->generateUrl('app_post_view', array('id' => $post->getId()), true),
                 $post->getPublishedAt()
             );
