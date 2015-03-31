@@ -58,7 +58,7 @@ class TimePassAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('category', 'entity', array('class' => 'AppBundle\Entity\Category'))
+            ->add('category', 'entity', array('class' => 'AppBundle\Entity\Category', 'required' => false))
             ->add('name')
             ->add('description')
             ->add('price')

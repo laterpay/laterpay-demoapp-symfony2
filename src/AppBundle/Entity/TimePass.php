@@ -12,7 +12,6 @@ class TimePass extends AbstractEntity
 {
     /**
      * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(nullable=false)
      */
     protected $category;
 
@@ -208,7 +207,7 @@ class TimePass extends AbstractEntity
      * @param \AppBundle\Entity\Category $category
      * @return TimePass
      */
-    public function setCategory(\AppBundle\Entity\Category $category)
+    public function setCategory(\AppBundle\Entity\Category $category = null)
     {
         $this->category = $category;
 
