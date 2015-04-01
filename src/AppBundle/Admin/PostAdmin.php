@@ -8,6 +8,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+use AppBundle\Entity\Post;
+
 class PostAdmin extends Admin
 {
     protected $baseRouteName = 'post';
@@ -66,7 +68,13 @@ class PostAdmin extends Admin
             ->add('teaser_content')
             ->add('price')
             ->add('published', 'checkbox', array('required' => false))
-            ->add('revenue_model')
+            ->add('revenue_model', 'choice', array(
+                'required' => false,
+                'choices' => array(
+                    Post::RM_PPU => 'PPU',
+                    Post::RM_SIS => 'SIS',
+                )
+            ))
         ;
     }
 

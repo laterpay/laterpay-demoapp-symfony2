@@ -12,6 +12,9 @@ class Post extends AbstractEntity
 {
     const STATUS_NEW    = 0;
 
+    const RM_PPU    = 'ppu';
+    const RM_SIS    = 'sis';
+
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(nullable=false)
