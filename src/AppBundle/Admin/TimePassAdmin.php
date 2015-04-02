@@ -8,6 +8,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+use AppBundle\Entity\TimePass;
+
 class TimePassAdmin extends Admin
 {
     protected $baseRouteName = 'timepass';
@@ -64,7 +66,13 @@ class TimePassAdmin extends Admin
             ->add('price')
             ->add('time_valid')
             ->add('voucher_code')
-            ->add('revenue_model')
+            ->add('revenue_model', 'choice', array(
+                'required' => false,
+                'choices' => array(
+                    TimePass::RM_PPU => 'PPU',
+                    TimePass::RM_SIS => 'SIS',
+                )
+            ))
         ;
     }
 
