@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use AppBundle\Interfaces\RevenueModel;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="timepasses", uniqueConstraints={
@@ -12,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *      })
  * })
  */
-class TimePass extends AbstractEntity
+class TimePass extends AbstractEntity implements RevenueModel
 {
     /**
      * @ORM\ManyToOne(targetEntity="Category")

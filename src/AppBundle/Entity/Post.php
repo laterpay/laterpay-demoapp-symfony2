@@ -4,16 +4,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use AppBundle\Interfaces\RevenueModel;
+
 /**
  * @ORM\Entity(repositoryClass="PostRepository")
  * @ORM\Table(name="posts")
  */
-class Post extends AbstractEntity
+class Post extends AbstractEntity implements RevenueModel
 {
     const STATUS_NEW    = 0;
-
-    const RM_PPU    = 'ppu';
-    const RM_SIS    = 'sis';
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
