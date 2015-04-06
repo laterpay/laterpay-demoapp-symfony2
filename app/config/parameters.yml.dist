@@ -20,3 +20,9 @@ parameters:
     secret:            f561aaf6ef0bf14d4208bb46a4ccb3ad
 
     app_host:          http://laterpay-symfony2-demoapp.com
+
+    laterpay_sandbox_merchant_id:   "LaterPay-WordPressDemo"
+    laterpay_sandbox_api_key:       "decafbaddecafbaddecafbaddecafbad"
+    laterpay_live_merchant_id:      "Live Merchant Id"
+    laterpay_live_api_key:          "Live API Key"
+    laterpay_sandbox_mode:          true

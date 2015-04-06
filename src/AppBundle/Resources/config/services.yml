@@ -1,3 +1,6 @@
+imports:
+    - { resource: services/laterpay.yml }
+
 services:
     app.admin.setting:
         class: AppBundle\Admin\SettingAdmin

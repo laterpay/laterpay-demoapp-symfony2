@@ -1,0 +1,9 @@
+#maincontainer {
+    margin-top: 5px;
+}
+
+#greetingcontainer,
+#actioncontainer,
+#signupcontainer {
+    display: inline-block;
+}

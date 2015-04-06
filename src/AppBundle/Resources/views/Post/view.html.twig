@@ -4,10 +4,49 @@
     <div>
         {{ post.publishedAt | date('Y-m-d H:i:s') }} by "{{ post.user.username }}", Category: {{ post.category.name }} <br />
         Title: {{ post.title }}<br />
-        {{ post.content | nl2br }}<br />
 
-        <br />
+        {% if LaterPay().hasAccess(post, timepasses) %}
+            {{ post.content | nl2br }}
+        {% else %}
+            {{ post.teaserContent ?: post.truncatedContent | nl2br }}
+
+            <a class="paylater" target="_blank" href="{{ LaterPay().getPayUrl(post) }}">
+                {% if LaterPay().isPPU(post) %}
+                    Read for {{ LaterPay().getPrice(post) }} and pay later
+                {% else %}
+                    Buy the full post with LaterPay for {{ LaterPay().getPrice(post) }}
+                {% endif %}
+            </a>
+
+            <br />
+
+            {% for timepass in timepasses %}
+                <div style="padding: 5px; margin: 2px; display: inline-block; border: 1px solid #E0E0E0;">
+                    name: {{ timepass.name }}<br />
+                    description: {{ timepass.description }}<br />
+
+                    <a class="paylater" target="_blank" href="{{ LaterPay().getPayUrl(timepass) }}">
+                        {% if LaterPay().isPPU(timepass) %}
+                            Buy now for {{ LaterPay().getPrice(timepass) }} and pay later
+                        {% else %}
+                            Buy now with LaterPay for {{ LaterPay().getPrice(timepass) }}
+                        {% endif %}
+                    </a>
+                </div>
+            {% endfor %}
+
+            {% if timepasses | length %}
+                <div id="redeem-voucher">
+                    <span>Redeem Voucher</span>
+                    <form method="post">
+                        <input type="text" required="required" name="code" placeholder="Code" />
+                        <input type="submit" value="Redeem" />
+                    </form>
+                </div>
+            {% endif %}
+        {% endif %}
+
         {% set params = app.request.get('category_id') ? { 'category_id' : app.request.get('category_id')} : {} %}
-        <a href="{{ path('app_posts', params) }}">Back to List</a><br />
+        <p><a href="{{ path('app_posts', params) }}">Back to List</a></p>
     </div>
 {% endblock %}
