@@ -1,5 +1,5 @@
 {% if categories | length %}
-    <div style="margin: 10px;">
+    <div class="category-list">
         Categories:
         {% for category in categories %}
             <a href="{{ path('app_posts', { 'category_id' : category.id }) }}">{{ category.name }} ({{ category.publishedPosts.count }})<a>
