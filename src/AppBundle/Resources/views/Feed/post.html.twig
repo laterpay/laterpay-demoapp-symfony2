@@ -1,5 +1,5 @@
 {% if post.price %}
-    {{ post.teaserContent ?: post.truncatedContent }}<br />
+    {{ post.teaserContent ?: post.truncatedContent }}<br>
     <a href="{{ url('app_post_view', { 'id' : post.id, 'buy' : true }) }}">Buy the full post with LaterPay for {{ LaterPay().getPrice(post) }}</a>
 {% else %}
     {{ post.truncatedContent }}<br>
