@@ -1,7 +1,7 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block content %}
-    <div>
+    <div class="post-view">
         {{ post.publishedAt | date('Y-m-d H:i:s') }} by "{{ post.user.username }}", Category: {{ post.category.name }} <br />
         Title: {{ post.title }}<br />
 
@@ -21,7 +21,7 @@
             <br />
 
             {% for timepass in timepasses %}
-                <div style="padding: 5px; margin: 2px; display: inline-block; border: 1px solid #E0E0E0;">
+                <div class="timepass">
                     name: {{ timepass.name }}<br />
                     description: {{ timepass.description }}<br />
 

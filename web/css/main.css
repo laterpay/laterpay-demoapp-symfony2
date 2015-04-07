@@ -1,3 +1,7 @@
+.laterpay-balance {
+    display: inline-block;
+}
+
 .laterpay-balance iframe {
     display: inline-block;
     margin-left: 30px;
@@ -6,11 +10,22 @@
     height: 30px;
 }
 
+.laterpay-controls {
+    display: inline-block;
+}
+
 .laterpay-controls iframe {
     display: inline-block;
     margin-bottom: -10px;
     width: 270px;
     height: 30px;
+}
+
+.post-view .timepass {
+    padding: 5px;
+    margin: 2px;
+    display: inline-block;
+    border: 1px solid #E0E0E0;
 }
 
 /* LaterPay Post View */

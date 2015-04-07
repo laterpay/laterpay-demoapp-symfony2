@@ -23,8 +23,8 @@
                 <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register' | trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
 
-            <div id="laterpay-balance" style="display: inline-block;" class="laterpay-balance"></div>
-            <div id="laterpay-controls" style="display: inline-block;" class="laterpay-controls"></div>
+            <div id="laterpay-balance" class="laterpay-balance"></div>
+            <div id="laterpay-controls" class="laterpay-controls"></div>
         </div>
         <hr />
         {% block body %}{% endblock %}
@@ -62,7 +62,6 @@
                             params
                         );
 
-                        {# TODO: move to //lpstatic.net/client/X.Y.Z/laterpay.js #}
                         var accountManager = new Y.LaterPay.AccountActionHandler(
                             new Y.LaterPay.DialogManager(),
                             lpOptions.login,

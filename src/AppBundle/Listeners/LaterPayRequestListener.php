@@ -40,7 +40,6 @@ class LaterPayRequestListener
 
         $client = $this->manager->client;
 
-        // TODO: move parameter name to LaterPay Client PHP
         if (null !== ($token = $event->getRequest()->get('lptoken'))) {
 
             $client->set_token($token);
