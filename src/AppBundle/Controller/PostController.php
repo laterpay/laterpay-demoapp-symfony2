@@ -74,7 +74,7 @@ class PostController extends AbstractController
 
         if ($this->getRequest()->get('buy')) {
             if (!$manager->hasAccess($post)) {
-                $url = $this->redirect($manager->getPayUrl($post));
+                $url = $manager->getPayUrl($post);
             } else {
                 $url = $this->generateUrl('app_post_view', array('id' => $post->getId()));
             }
