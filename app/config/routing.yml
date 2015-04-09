@@ -33,3 +33,4 @@ _sonata_admin:
 
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
+    #schemes: [https]

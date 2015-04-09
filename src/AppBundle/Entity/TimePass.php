@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Interfaces\RevenueModel;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="TimePassRepository")
  * @ORM\Table(name="timepasses", uniqueConstraints={
  *      @ORM\UniqueConstraint(name="voucher_code_idx", columns={
  *          "voucher_code"
