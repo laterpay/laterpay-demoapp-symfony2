@@ -1,0 +1,32 @@
+services:
+    app.admin.setting:
+        class: AppBundle\Admin\SettingAdmin
+        arguments: [~, AppBundle\Entity\Setting, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: app.admin.group.main, label: Setting}
+
+    app.admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: app.admin.group.main, label: Category}
+
+    app.admin.post:
+        class: AppBundle\Admin\PostAdmin
+        arguments: [~, AppBundle\Entity\Post, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: app.admin.group.main, label: Post}
+
+    app.admin.time_pass:
+        class: AppBundle\Admin\TimePassAdmin
+        arguments: [~, AppBundle\Entity\TimePass, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: app.admin.group.main, label: TimePass}
+
+    app.admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [~, AppBundle\Entity\User, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: fos_user, label: User}
+        calls:
+            - [ setUserManager, [@fos_user.user_manager]]

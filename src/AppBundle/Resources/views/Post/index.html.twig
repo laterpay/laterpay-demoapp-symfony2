@@ -1,0 +1,16 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="post-list">
+        {% set params = app.request.get('category_id') ? { 'category_id' : app.request.get('category_id')} : {} %}
+
+        {% for post in posts %}
+            <div class="post">
+                {{ post.publishedAt | date('Y-m-d H:i:s') }} by "{{ post.user.username }}", Category: {{ post.category.name }}<br>
+                Title: {{ post.title }}<br>
+                {{ post.truncatedContent | nl2br }}<br>
+                <a href="{{ path('app_post_view', { id: post.id } | merge(params)) }}">Read the full post</a><br>
+            </div>
+        {% endfor %}
+        </div>
+{% endblock %}

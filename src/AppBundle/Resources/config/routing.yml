@@ -1,0 +1,15 @@
+app_homepage:
+    path:       /
+    defaults:   { _controller: AppBundle:Default:index }
+
+app_posts:
+    path:       /post
+    defaults:   { _controller: AppBundle:Post:index }
+
+app_posts_feed:
+    path:       /post.rss
+    defaults:   { _controller: AppBundle:Post:feed }
+
+app_post_view:
+    path:       /post/{id}
+    defaults:   { _controller: AppBundle:Post:view }
