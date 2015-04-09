@@ -69,8 +69,48 @@ class PostController extends AbstractController
      */
     public function viewAction(Post $post)
     {
+        /* @var $manager \AppBundle\Services\LaterPayManager */
+        $manager = $this->container->get('app.laterpay');
+
+        if ($this->getRequest()->get('buy')) {
+            if (!$manager->hasAccess($post)) {
+                $url = $manager->getPayUrl($post);
+            } else {
+                $url = $this->generateUrl('app_post_view', array('id' => $post->getId()));
+            }
+
+            return $this->redirect($url);
+        }
+
+        /* @var $repository \AppBundle\Entity\TimePassRepository */
+        $repository = $this->getEntityRepository('AppBundle:TimePass');
+
+        $timepasses = $repository->findByPost($post);
+
+        $timepass = null;
+
+        if (null !== ($code = $this->getRequest()->get('code'))) {
+
+            foreach ($timepasses as $item) {
+
+                if ($item->getVoucherCode() == $code) {
+
+                    $timepass = $item;
+
+                    $timepass
+                        ->setPrice(0)
+                    ;
+
+                    break;
+                }
+            }
+
+        }
+
         return array(
-            'post' => $post,
+            'post'          => $post,
+            'timepasses'    => $timepasses,
+            'redeem'        => $timepass,
         );
     }
 }

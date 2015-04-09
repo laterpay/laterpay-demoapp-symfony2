@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class TimePassRepository extends EntityRepository
 {
+    /**
+     * @param \AppBundle\Entity\Post $post
+     * @return array
+     */
+    public function findByPost(Post $post)
+    {
+        $query = $this->createQueryBuilder('tp');
+
+        $query
+            ->where('tp.category IS NULL OR tp.category = :category')
+            ->setParameter('category', $post->getCategory())
+            ->addOrderBy('tp.category', 'desc')
+            ->addOrderBy('tp.price', 'asc')
+        ;
+
+        return $query->getQuery()->getResult();
+    }
+
 }

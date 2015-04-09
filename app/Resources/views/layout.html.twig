@@ -22,9 +22,71 @@
                 <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login' | trans({}, 'FOSUserBundle') }}</a>
                 <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register' | trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
+
+            <div id="laterpay-balance" class="laterpay-balance"></div>
+            <div id="laterpay-controls" class="laterpay-controls"></div>
         </div>
         <hr />
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        {% block javascripts %}
+            {% if LaterPay().isEnabled %}
+                <script type="text/javascript" src="{{ LaterPay().getJavaScriptUrl() }}"></script>
+                <script type="text/javascript">
+                    var lpOptions = {
+                        login: "{{ LaterPay().getLoginUrl() | raw }}",
+                        logout: "{{ LaterPay().getLogoutUrl() | raw }}",
+                        signup: "{{ LaterPay().getSignupUrl() | raw }}",
+                        balance: "{{ LaterPay().getBalanceUrl() | raw }}",
+                        controlsLinks: "{{ LaterPay().getControlsLinksUrl('lsg', asset('css/laterpay.css', absolute=true)) | raw }}"
+                    };
+                </script>
+
+                <script type="text/javascript">
+                    YUI().use("node", "laterpay-dialog", "laterpay-iframe", "laterpay-easyxdm", function(Y) {
+
+                        var params = {
+                            scrolling: "no",
+                            frameborder: "0"
+                        };
+
+                        new Y.LaterPay.IFrame(
+                            Y.one("#laterpay-balance"),
+                            lpOptions.balance,
+                            params
+                        );
+
+                        new Y.LaterPay.IFrame(
+                            Y.one("#laterpay-controls"),
+                            lpOptions.controlsLinks,
+                            params
+                        );
+
+                        var accountManager = new Y.LaterPay.AccountActionHandler(
+                            new Y.LaterPay.DialogManager(),
+                            lpOptions.login,
+                            lpOptions.logout,
+                            lpOptions.signup
+                        );
+
+                        Y.on("laterpay:iFrameMessage", accountManager.onDialogXDMMessage, accountManager);
+
+                        Y.on("laterpay:dialogMessage", function(e) {
+                            switch (e.msg) {
+                                case "laterpay.user.login":
+                                case "laterpay.user.logout":
+                                    location.reload();
+                                break;
+                            }
+                        });
+
+                        var linksDM = new Y.LaterPay.DialogManager();
+
+                        linksDM.attachToLinks(".paylater", true);
+
+                    });
+                </script>
+            {% endif %}
+        {% endblock %}
     </body>
 </html>

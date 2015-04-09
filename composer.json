@@ -8,6 +8,16 @@
             "SymfonyStandard": "app/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/laterpay/laterpay-client-php"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laterpay/laterpay-php-browscap-library"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.6.*",
@@ -29,7 +39,9 @@
         "sonata-project/admin-bundle": "~2.3",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "sonata-project/user-bundle": "~2.2",
-        "eko/feedbundle": "~1.2"
+        "eko/feedbundle": "~1.2",
+        "laterpay/laterpay-client-php": "dev-develop",
+        "laterpay/laterpay-php-browscap-library": "dev-develop"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

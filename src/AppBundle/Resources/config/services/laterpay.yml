@@ -1,0 +1,35 @@
+parameters:
+    laterpay:
+
+        use_sandbox: "%laterpay_sandbox_mode%"
+
+        sandbox:
+            cp_key:     %laterpay_sandbox_merchant_id%
+            api_key:    %laterpay_sandbox_api_key%
+            api_root:   "https://api.sandbox.laterpaytest.net"
+            web_root:   "https://web.sandbox.laterpaytest.net"
+            js_url:     "//sandbox.lpstatic.net/combo?yui/3.17.2/build/yui/yui-min.js&client/1.0.0/config-sandbox.js"
+
+        live:
+            cp_key:     %laterpay_live_merchant_id%
+            api_key:    %laterpay_live_api_key%
+            api_root:   "https://api.laterpay.net"
+            web_root:   "https://web.laterpay.net"
+            js_url:     "//lpstatic.net/combo?yui/3.17.2/build/yui/yui-min.js&client/1.0.0/config.js"
+
+services:
+    app.laterpay:
+        class: AppBundle\Services\LaterPayManager
+        arguments: [@service_container]
+
+    kernel.listener.app.laterpay:
+        class: AppBundle\Listeners\LaterPayRequestListener
+        arguments: [@app.laterpay]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    twig.extension.laterpay:
+        class: AppBundle\Twig\Extension\LaterPayExtension
+        arguments: [@app.laterpay]
+        tags:
+            - { name: twig.extension }
